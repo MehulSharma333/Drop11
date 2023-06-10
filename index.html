@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Drag.css">
+</head>
+<body>
+    <div class="container">
+        <button id="This" onclick="refreshPage()" >Reset</button>
+<div id="left">
+    <div class="list" draggable="true">1.List Item</div>
+    <div class="list" draggable="true">2.List Item</div>
+    <div class="list" draggable="true">3.List Item</div>
+    <div class="list" draggable="true">4.List Item</div>
+   
+</div>
+<div id="right"></div>
+
+    </div>
+
+    
+    <script>
+        let lists = document.getElementsByClassName("list")
+        let rightbox = document.getElementById("right")
+        let leftbox = document.getElementById("left")
+
+        for(list of lists){
+            list.addEventListener("dragstart", function(e){
+                let selected = e.target;
+
+                rightbox.addEventListener("dragover", function(e){
+                    e.preventDefault();
+                });
+                rightbox.addEventListener("drop",function(e){
+                    rightbox.appendChild(selected);
+                    selected = null;
+                })
+                rightbox.addEventListener("drop",function(e){
+                    alert("Position Changed");
+                })
+                leftbox.addEventListener("dragover", function(e){
+                    e.preventDefault();
+                });
+                leftbox.addEventListener("drop",function(e){
+                    leftbox.appendChild(selected);
+                    selected = null;
+                })
+                leftbox.addEventListener("drop",function(e){
+                    alert("Position Changed");
+                })
+            })
+               function refreshPage(){
+                if(confirm("You want to reset the function??"))
+                {
+                    location.reload();
+                }
+               }
+
+        }
+    </script>
+</body>
+</html>
